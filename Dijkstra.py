@@ -18,13 +18,16 @@ def dijkstra(start):
 
     while q:
         dist, now = heapq.heappop(q)
-        if distance[now] < dist: continue
+        if distance[now] < dist: continue 
+        #1)INF에서 갱신되니깐 방문했다면 보통 dist보다 작다.
+        #2) 현재(now)의 distance값보다 dist가 크다면 볼필요도 없다.
 
         for i in graph[now]:
             cost = dist + i[1] 
             if cost < distance[i[0]]:
                 distance[i[0]] = cost
-                heapq.heappush(q, (cost, i[0]))
+                heapq.heappush(q, (cost, i[0])) 
+                #distance를 초기화 or 갱신해야 어디가 더 빨리갈수있는지 알지!
 
 dijkstra(s)
 
