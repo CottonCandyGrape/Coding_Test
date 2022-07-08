@@ -10,6 +10,7 @@ distance = [INF]*(n+1)
 for _ in range(e):
     a, b, c = map(int, input().split()) #a->b로 가는 비용이 c
     graph[a].append((b,c))
+    #무방향 그래프라면 graph[b].append((a,c)) 추가로 해줘야 함
 
 def dijkstra(start):
     q = []
