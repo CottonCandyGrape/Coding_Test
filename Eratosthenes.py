@@ -7,5 +7,4 @@ def eratosthenes(n):
             primes.append(i) #prime 배열 안쓴다면 생략 가능
             for j in range(i*2, n+1, i):
                 era[j] = False
-    return primes
-    #return era
+    return era, primes # 둘 중 필요한 것 골라 쓰면 된다.
