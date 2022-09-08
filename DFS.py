@@ -5,6 +5,17 @@ def dfs(graph, v, visited):
         if not visited[i]:
             dfs(graph, i, visited)
 
+def dfs_stk(graph, v, visited):
+    stk = [v]
+    while stk:
+        cv = stk.pop()
+        if not visited[cv]:
+            visited[cv] = True
+            print(cv, end=' ')
+        for i in range(len(graph[cv])-1, -1, -1):
+            if not visited[graph[cv][i]]:
+                stk.append(graph[cv][i])
+
 graph = [
     [],
     [2, 3, 8],
