@@ -5,7 +5,7 @@ def dfs(graph, v, visited):
         if not visited[i]:
             dfs(graph, i, visited)
 
-def dfs_stk(graph, v, visited):
+def dfs_stk(graph, v, visited): #stack으로 구현한 것인데... 좋아보이지 않는다..
     stk = [v]
     while stk:
         cv = stk.pop()
