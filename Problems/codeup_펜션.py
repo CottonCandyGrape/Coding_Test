@@ -1,5 +1,6 @@
 #https://codeup.kr/problem.php?id=4040
-#펜션
+#Greedy
+
 n, m = map(int, input().split())
     
 reserve = [input() for _ in range(n)]

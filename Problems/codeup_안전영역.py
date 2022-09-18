@@ -1,5 +1,6 @@
 #https://codeup.kr/problem.php?id=4697
-#안전 영역
+#DFS/BFS
+
 from collections import deque
 
 n = int(input())

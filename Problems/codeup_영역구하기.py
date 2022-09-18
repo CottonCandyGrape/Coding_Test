@@ -1,5 +1,6 @@
 #https://codeup.kr/problem.php?id=4572
-#영역 구하기
+#DFS/BFS
+
 from collections import deque
 
 m, n, k = map(int, input().split())
