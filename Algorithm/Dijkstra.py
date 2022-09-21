@@ -5,7 +5,7 @@ INF = int(1e9)
 
 n, e, s = map(int, input().split())
 graph = [[] for _ in range(n+1)]
-distance = [INF]*(n+1)
+distance = [INF]*(n+1) #방문 처리하는 list를 따로 만들지 않고 distance로 대체
 
 for _ in range(e):
     a, b, c = map(int, input().split()) #a->b로 가는 비용이 c
