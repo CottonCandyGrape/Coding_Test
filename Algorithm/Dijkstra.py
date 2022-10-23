@@ -22,7 +22,6 @@ def dijkstra(start):
         if distance[now] < dist: #이미 방문 처리가 됐다고 간주할 수 있음.
             continue 
         
-
         for i in graph[now]:#현재(now)와 연결된 노드 중
             cost = dist + i[1]
             if cost < distance[i[0]]: #now를 거쳐 가는 비용이 더 작다면
