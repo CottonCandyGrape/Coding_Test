@@ -15,17 +15,17 @@ def pre_order(node):
 #중위 순회 (in-order traversal)
 def in_order(node):
     if node.left_node != None:
-        pre_order(tree[node.left_node])
+        in_order(tree[node.left_node])
     print(node.data, end=' ')
     if node.right_node != None:
-        pre_order(tree[node.right_node])
+        in_order(tree[node.right_node])
         
 #후위 순회 (post-order traversal)
 def post_order(node):
     if node.left_node != None:
-        pre_order(tree[node.left_node])
+        post_order(tree[node.left_node])
     if node.right_node != None:
-        pre_order(tree[node.right_node])
+        post_order(tree[node.right_node])
     print(node.data, end=' ')
 
 n = int(input())
