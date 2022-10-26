@@ -3,7 +3,7 @@
 
 x, y = map(int, input().split())
 
-z = y*100 // x# int로 씌우는 것보다 정확
+z = y*100 // x #int로 씌우는 것보다 정확
 
 result = 0
 if z>=99:

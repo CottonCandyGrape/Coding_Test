@@ -31,7 +31,7 @@ else:
 print(max(nums)-min(nums))
 
 
-#Counter를 이용한 풀
+#Counter를 이용한 풀이
 from collections import Counter
 
 n = int(input())
