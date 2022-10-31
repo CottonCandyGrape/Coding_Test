@@ -1,3 +1,5 @@
+#각 함수의 print 위치 중요!
+
 class Node:
     def __init__(self, data, left_node, right_node):
         self.data = data
