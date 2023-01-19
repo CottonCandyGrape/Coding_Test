@@ -5,6 +5,25 @@ x, y = map(int, input().split())
 
 z = y*100 // x #int로 씌우는 것보다 정확
 
+# 2번째 풀이 -> 더 깔끔
+s = 1
+e = int(1e9)
+
+result = -1 
+while s<=e:
+    mid = (s+e)//2
+
+    newz = (y+mid)*100 // (x+mid)
+
+    if newz>z:
+        e = mid-1
+        result = mid
+    else:
+        s = mid+1
+
+print(result)
+
+'''
 result = 0
 if z>=99:
     print(-1)
@@ -20,3 +39,4 @@ else:
         else:
             s = mid + 1
     print(result)
+'''

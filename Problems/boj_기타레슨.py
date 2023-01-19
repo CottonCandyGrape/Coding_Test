@@ -7,6 +7,32 @@ input = sys.stdin.readline
 n, m = map(int, input().split())
 l = list(map(int, input().split()))
 
+#2번째 풀이
+s = max(l) #여기서 헤맸다...
+e = n*int(1e4)
+
+result = 0
+while s<=e:
+    mid = (s+e)//2
+
+    count = 1
+    tmp = 0
+    for i in l:
+        tmp += i
+        if tmp>mid:
+            count += 1
+            tmp = i
+
+    if count>m:
+        s = mid+1
+    else:
+        result = mid
+        e = mid-1
+
+print(result)
+
+
+'''
 result = int(1e9) #최솟값 구하는거니 첨엔 큰 값
 start = max(l) #크기가 max(l)이 되어야 어떤 강의라도 1개는 들어갈 수 있다.
 end  = sum(l)
@@ -30,7 +56,7 @@ while start<=end:
         start = mid+1
     
 print(result)
-
+'''
 '''
 이분 탐색 문제인걸 모르고 봤으면 어리둥절했을거다...
 근데 알고봤어도 어떻게 적용해야할지 몰랐다.
