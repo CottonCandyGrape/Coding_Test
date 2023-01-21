@@ -27,8 +27,7 @@ def dfs(s):
             dfs(i)
 
 dfs(r)
-for i in range(1, n+1):
-    print(visited[i])
+print(*visited[1:], sep='\n')
     
 '''틀린 코드
 def dfs(d,s):
