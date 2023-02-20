@@ -1,32 +1,35 @@
 #https://www.acmicpc.net/problem/2110
 #Binary Search, Parametric Search
 
+import sys
+input = sys.stdin.readline
+
 n, c = map(int, input().split())
-hlist = [int(input()) for _ in range(n)]
-hlist.sort()
+l = [int(input()) for _ in range(n)]
+l.sort()
 
-start = 1 # 최소 거리 : 배열의 첫번째 원소가 아닌 1
-end = hlist[-1] - hlist[0] # 최대 거리 : 제일 작은 원소와 큰 원소의 차이
+s = 1 # 최소 거리 : 배열의 첫번째 원소가 아닌 1
+e = l[-1] - l[0] # 최대 거리 : 제일 작은 원소와 큰 원소의 차이
+
 result = 0
-
-while start<=end:
-    mid = (start+end) // 2
-    val = hlist[0]
-    count = 1
+while s<=e:
+    mid = (s+e)//2
+    val = l[0]
+    cnt = 1 # 처음에 1개 두니깐 1부터 시작
     for i in range(1, n):
-        if hlist[i] >= mid+val:
-            val = hlist[i]
-            count += 1
-    if count >= c: # c개 이상이면 거리를 증가
-        start = mid + 1
+        if l[i]>=mid+val:
+            val = l[i]
+            cnt += 1
+    if cnt>=c:
+        s = mid+1 
         result = mid
     else:
-        end = mid - 1
-        
+        e = mid-1
+
 print(result)
 
+
 '''
-백준에서 python으로 하면 시간 초과남.ㅡㅡ
 첨부터 공유기 개수를 c개로 하고 hlist 에서 c개만큼 뽑는 조합의 방법을 생각했다.
 역시나 비효율적이어서 틀림.
 간격을 조절하면서 공유기 개수를 count 하는게 관건이었음.
