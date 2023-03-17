@@ -1,5 +1,5 @@
-#https://www.acmicpc.net/problem/1260
-#DFS, BFS
+//https://www.acmicpc.net/problem/1260
+//DFS, BFS
 
 #include <iostream>
 #include <vector>
