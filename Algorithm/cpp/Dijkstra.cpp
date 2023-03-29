@@ -22,11 +22,12 @@ void dijkstra(int start){
         if (d[now]<dist) continue;
 
         for(int i=0; i<graph[now].size(); i++){
-            int cost = graph[now][i].second;
+            int cost = dist + graph[now][i].second;
+			int next = graph[now][i].first;
 
-            if (cost < d[graph[now][i].first]){
-                d[graph[now][i].first] = cost;
-                pq.push(make_pair(-cost, graph[now][i].first));
+            if (cost < d[next]){
+                d[next] = cost;
+                pq.push(make_pair(-cost, next));
             }
         }
     }
