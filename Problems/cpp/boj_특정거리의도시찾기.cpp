@@ -1,5 +1,5 @@
 //https://www.acmicpc.net/problem/18352
-//shortest
+//BFS, Dijkstra
 
 #include <iostream>
 #include <algorithm>
