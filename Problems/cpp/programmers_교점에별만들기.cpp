@@ -3,7 +3,6 @@
 
 #include <bits/stdc++.h>
 
-
 using namespace std;
 
 vector<string> solution(vector<vector<int>> line) {
