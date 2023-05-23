@@ -1,6 +1,30 @@
 //https://www.acmicpc.net/problem/1932
+//https://school.programmers.co.kr/learn/courses/30/lessons/43105
 //DP
 
+//거꾸로부터 올라가는 것. 정답에 최댓값 안찾아도 돼서 편함.
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<vector<int>> tri) {
+    int answer;
+    for (int i=tri.size()-1; i>0; i--){
+        for (int j=0; j<tri[i].size()-1; j++){
+            if (tri[i][j] > tri[i][j+1])
+                tri[i-1][j] += tri[i][j];
+            else
+                tri[i-1][j] += tri[i][j+1];
+        }
+    }
+    
+    answer = tri[0][0];
+    
+    return answer;
+}
+
+//첫 번째 풀이
 #include <iostream>
 #include <vector>
 #include <algorithm>
