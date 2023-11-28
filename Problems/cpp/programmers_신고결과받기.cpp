@@ -34,6 +34,35 @@ vector<int> solution(vector<string> id_list, vector<string> report, int k) {
     return ret;
 }
 
+//내풀이 2
+vector<int> solution(vector<string> id_list, vector<string> report, int k) {
+    vector<int> answer;
+    map<string, int> resultMap;
+    map<string, set<string>> reportMap;
+    
+    for (int i=0; i<report.size(); i++)
+    {
+        int idx = report[i].find(' ');
+        string first = report[i].substr(0, idx);
+        string second = report[i].substr(idx+1);
+        reportMap[second].insert(first);
+    }
+    
+    for (const auto& [key, val] : reportMap)
+    {
+        if(val.size() >= k)
+        {
+            for (const auto& v : val)
+                resultMap[v]++;
+        }
+    }
+    
+    for (const string& id : id_list)
+        answer.push_back(resultMap[id]);
+    
+    return answer;
+}
+
 //내 풀이
 vector<int> solution(vector<string> id_list, vector<string> report, int k) {
     vector<int> answer(id_list.size(), 0);
