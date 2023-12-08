@@ -50,3 +50,63 @@ int solution(int n, int k) {
     
     return answer;
 }
+
+///////////////////////////////////////////
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <sstream>
+
+using namespace std;
+
+string itok(int n, int k)
+{
+    if (k == 10) return to_string(n);
+    
+    string result = "";
+    while (n>0)
+    {
+        result += to_string(n%k);
+        n /= k;
+    }
+    reverse(result.begin(), result.end());
+    
+    return result;
+}
+
+bool isPrime(long long num)
+{
+    if (num<=1) return false;
+    
+    //for (long long i=2; i<=sqrt(num); i++)
+    for (long long i=2; i<(long long)sqrt(num)+1; i++)
+    {
+        if(num%i==0)
+            return false;
+    }
+    return true;
+}
+
+int solution(int n, int k) {
+    int answer = 0;
+    vector<string> pvec;
+    
+    string knum = itok(n, k);
+    istringstream ss(knum);
+    string tmp = "";
+    while(getline(ss, tmp, '0'))
+    {
+        if(tmp.size()>0)
+            pvec.push_back(tmp);
+    }
+    
+    for (string s : pvec)
+    {
+        if(isPrime(stoll(s)))
+            answer++;
+    }
+    
+    return answer;
+}

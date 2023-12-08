@@ -10,6 +10,38 @@
 
 using namespace std;
 
+//내 풀이 2
+int solution(int cacheSize, vector<string> cities) {
+    int answer = 0;
+    list<string> clist;
+
+    if (cacheSize == 0) return cities.size() * 5;
+
+    for (string& city : cities)
+        transform(city.begin(), city.end(), city.begin(), ::tolower);
+
+    for (const string& city : cities)
+    {
+        auto it = find(clist.begin(), clist.end(), city);
+        if(it!=clist.end()) //hit
+        {
+            answer++;
+            clist.erase(it);
+        }
+        else //miss
+        {
+            answer += 5;
+            if (clist.size() >= cacheSize)
+                clist.pop_front();
+        }
+        
+        clist.push_back(city);
+    }
+
+    return answer;
+}
+
+//내 풀이 1
 int solution(int cacheSize, vector<string> cities) {
     const int ch=1, cm=5;
     
