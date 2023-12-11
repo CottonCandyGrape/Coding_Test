@@ -28,7 +28,7 @@ vector<int> solution(string msg) {
         }
     }
     
-    answer.push_back(dict[tmp]);
+    answer.push_back(dict[tmp]); //i--를 하니깐 tmp는 무조건 공백이 아님
     
     return answer;
 }
