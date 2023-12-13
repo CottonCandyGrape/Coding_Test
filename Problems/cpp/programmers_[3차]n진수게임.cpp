@@ -7,13 +7,16 @@
 
 using namespace std;
 
-string nums = "0123456789ABCDEF";
+string numstr = "0123456789ABCDEF";
 
-string getn(int n, int k){
+string getNum(int n, int num)
+{
     string result = "";
-    while (n>0){
-        result += nums[n%k];
-        n /= k;
+    
+    while(num>0)
+    {
+        result += numstr[num%n];
+        num /= n;
     }
     
     reverse(result.begin(), result.end());
@@ -23,18 +26,19 @@ string getn(int n, int k){
 
 string solution(int n, int t, int m, int p) {
     string answer = "";
-    int limit = t*m;
-    int num=1;
-    string tmp = "0";
     
-    while (true){
-        tmp += getn(num, n);
-        if (tmp.size()>limit) break;
+    int limit = t*m;
+    int num = 1;
+    string nums = "0";
+    
+    while (nums.size()<limit)
+    {
+        nums += getNum(n, num);
         num++;
     }
     
     for (int i=p-1; i<limit; i+=m)
-        answer += tmp[i];
-    
+        answer += nums[i];
+        
     return answer;
 }
