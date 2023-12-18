@@ -10,28 +10,28 @@ using namespace std;
 
 int solution(vector<int> queue1, vector<int> queue2) {
     int answer = 0;
+    long long left = accumulate(queue1.begin(), queue1.end(), 0LL);
+    long long right = accumulate(queue2.begin(), queue2.end(), 0LL);
+    deque<int> dq1 = deque(queue1.begin(), queue1.end());
+    deque<int> dq2 = deque(queue2.begin(), queue2.end());
     
-    deque<int> q1(queue1.begin(), queue1.end());
-    deque<int> q2(queue2.begin(), queue2.end());
-    
-    long long l = accumulate(q1.begin(), q1.end(), 0LL); 
-    long long r = accumulate(q2.begin(), q2.end(), 0LL); 
-    long long sum = (l+r)/2 ; 
-    
-    for (int i=0; i<queue1.size()*3; i++){
-        if (l==sum) return answer;
+    for (int i=0; i<queue1.size()*3; i++)
+    {
+        if (left==right) return answer;
         
-        if (l<sum){
-            l += q2.front();
-            r -= q2.front();
-            q1.push_back(q2.front());
-            q2.pop_front();
+        if (left>right)
+        {
+            left -= dq1.front();
+            right += dq1.front();
+            dq2.push_back(dq1.front());
+            dq1.pop_front();
         }
-        else if (l>sum){
-            l -= q1.front();
-            r += q1.front();
-            q2.push_back(q1.front());
-            q1.pop_front();
+        else if (left<right)
+        {
+            left += dq2.front();
+            right -= dq2.front();
+            dq1.push_back(dq2.front());
+            dq2.pop_front();
         }
         
         answer++;
