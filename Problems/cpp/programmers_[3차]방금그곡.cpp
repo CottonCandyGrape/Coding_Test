@@ -1,13 +1,88 @@
 //https://school.programmers.co.kr/learn/courses/30/lessons/17683
 //Implementation, Sort
 
+#include <iostream>
 #include <string>
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <cctype>
 
 using namespace std;
 
+//string 치환 풀이
+int getPlayTime(string str1, string str2)
+{
+    int sh, sm, eh, em;
+    sh = stoi(str1.substr(0, 2));
+    sm = stoi(str1.substr(3, 2));
+    eh = stoi(str2.substr(0, 2));
+    em = stoi(str2.substr(3, 2));
+    
+    return (eh*60 + em) - (sh*60 + sm);
+}
+
+vector<string> infoToVec(string str)
+{
+    vector<string> result;
+    stringstream iss(str);
+    string tmp = "";
+    
+    while(getline(iss, tmp, ','))
+        result.push_back(tmp);
+    
+    return result;
+}
+
+string replaceSharp(string str)
+{
+    string result = "";
+    for (int i=0; i<str.size(); i++)
+    {
+        if (str[i] == '#')
+            result.back() = tolower(result.back());
+        else
+            result += str[i];
+    }
+    
+    return result;
+}
+
+bool cmp (const pair<string, int>& a, const pair<string, int>& b)
+{
+    return a.second > b.second;
+}
+
+string solution(string m, vector<string> musicinfos) {
+    string answer = "(None)";
+    
+    m = replaceSharp(m);
+    vector<pair<string, int>> ansVec;
+    
+    for(const string& music : musicinfos)
+    {
+        vector<string> mtmp = infoToVec(music);
+        int time = getPlayTime(mtmp[0], mtmp[1]);
+        string rInfo = replaceSharp(mtmp[3]);
+        
+        string info = "";
+        for (int i=0; i<time; i++)
+            info += rInfo[i%rInfo.size()];
+        
+        if(info.find(m) != string::npos)
+            ansVec.push_back(make_pair(mtmp[2], time));
+    }
+    
+    if(ansVec.size())
+    {
+        stable_sort(ansVec.begin(), ansVec.end(), cmp);
+        answer = ansVec[0].first;
+    }
+    
+    return answer;
+}
+
+//벡터 풀이
 int playTime(string s, string e){
     int sh, sm, eh, em;
     sh = stoi(s.substr(0, 2));
@@ -34,7 +109,7 @@ vector<string> scoreVec(string str){
     
     for (int i=0; i<str.size(); i++){
         if (str[i] == '#')
-            //*(result.end()-1) += '#';
+            //(result.end()-1) += '#';
             result.back() += '#';
         else
             result.push_back(string(1, str[i]));
