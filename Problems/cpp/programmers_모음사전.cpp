@@ -6,27 +6,26 @@
 
 using namespace std;
 
-int cnt=-1, answer;
-string words = "AEIOU";
+string aeiou = "AEIOU";
+int cnt=-1, answer=0;
 string target;
 
-void dfs(int depth, string tmp){
+void dfs (string w)
+{
     cnt++;
-    
-    if (tmp==target) {
+    if(w==target){
         answer = cnt;
         return;
     }
     
-    if (depth==words.size()) return;
+    if(w.size()==5) return;
     
-    for (int i=0; i<words.size(); i++)
-        dfs(depth+1, tmp+words[i]);
+    for(int i=0; i<5; i++)
+        dfs(w+aeiou[i]);
 }
 
 int solution(string word) {
     target = word;
-    dfs(0, "");
-    
+    dfs("");
     return answer;
 }
