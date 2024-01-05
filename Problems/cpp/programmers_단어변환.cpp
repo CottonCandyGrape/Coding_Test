@@ -54,6 +54,61 @@ int solution(string begin, string target, vector<string> words) {
 }
 
 
+//DFS 풀이2
+int limit, answer=51;
+string ans;
+vector<bool> visit;
+vector<string> wordVec;
+
+bool check(const string& str1, const string& str2)
+{
+    int cnt = 0;
+    for(int i=0; i<str1.size(); i++){
+        if(str1[i] != str2[i])
+            cnt++;
+        
+        if(cnt>1)
+            return false;
+    }
+    
+    if(cnt==1) return true;
+}
+
+void dfs(int depth, string word)
+{
+    if(depth>limit)
+        return;
+    
+    if(word == ans)
+    {
+        answer = min(answer, depth);
+        return;
+    }
+    
+    for(int i=0; i<limit; i++){
+        if(!visit[i] && check(word, wordVec[i]))
+        {
+            visit[i] = true;
+            dfs(depth+1, wordVec[i]);
+            visit[i] = false;
+        }
+    }
+}
+
+int solution(string begin, string target, vector<string> words) {
+    if (find(words.begin(), words.end(), target) == words.end())
+        return 0;
+    
+    limit = words.size();
+    ans = target;
+    visit.resize(words.size());
+    wordVec = words;
+    
+    dfs(0, begin);
+    
+    return answer;
+}
+
 //DFS 풀이
 int answer = 51;
 vector<bool> visit;
