@@ -2,35 +2,38 @@
 //DFS, Back Tracking
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 int n, m;
-int arr[9];
-bool visited[9];
+vector<bool> visit;
+vector<int> ans;
 
-void dfs(int depth, int num){
-    if (depth==m){
-        for (int i=0; i<m; i++)
-            cout << arr[i] << ' ';
+void dfs(int depth, int start)
+{
+    if(depth == m){
+        for (const int a : ans)
+            cout << a << ' ';
         cout << '\n';
         return;
     }
 
-    for (int i=num; i<n+1; i++){
-        if(!visited[i]){
-            visited[i] = true;
-            arr[depth] = i;
-            dfs(depth+1, i+1);
-            visited[i] = false;
-        }
+    for (int i=start; i<n; i++){
+        ans[depth] = i+1;
+        dfs(depth+1, i+1);
     }
 }
 
-int main(){
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL); cout.tie(NULL);
+int main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
 
     cin >> n >> m;
-    dfs(0, 1);
+
+    visit.resize(n, false);
+    ans.resize(m);
+
+    dfs(0, 0);
 }
